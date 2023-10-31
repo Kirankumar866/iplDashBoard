@@ -1,24 +1,18 @@
-import React, {Component} from 'react'
+import {Link} from 'react-router-dom'
 import './index.css'
 
-class TeamCard extends Component {
-  componentDidMount() {
-    this.getTeamCardDetails()
-  }
+const TeamCard = props => {
+  const {teamDetails} = props
+  const {name, id, teamImageURL} = teamDetails
 
-  getTeamCardDetails = async () => {
-    const response = await fetch('https://apis.ccbp.in/ipl')
-    const data = await response.json()
-    console.log(data)
-  }
-
-  render() {
-    return (
-      <div>
-        <h1>red</h1>
-      </div>
-    )
-  }
+  return (
+    <li className="team-item">
+      <Link to={`/team-matches/${id}`} className="link-item">
+        <img src={teamImageURL} alt={name} className="team-logo" />
+        <p className="team-name">{name}</p>
+      </Link>
+    </li>
+  )
 }
 
 export default TeamCard
